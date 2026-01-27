@@ -1,4 +1,4 @@
-# bun-react-tailwind-shadcn-template
+# md5tools with bun-react-tailwind-shadcn
 
 To install dependencies:
 
