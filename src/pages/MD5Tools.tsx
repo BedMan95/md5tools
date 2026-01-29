@@ -10,6 +10,9 @@ import { Label } from "@/components/ui/label"
 import { Copy, Check, Upload, AlertCircle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
+// Mark as Client Component for Next.js
+"use client"
+
 export default function MD5Tool() {
     const [textInput, setTextInput] = useState('')
     const [textHash, setTextHash] = useState('')
