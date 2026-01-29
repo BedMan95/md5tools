@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { hash: string } }
+  { params }: { params: Promise<{ hash: string }> }
 ) {
-  const hash = (params.hash || "").trim().toLowerCase();
+  const hash = ((await params).hash || "").trim().toLowerCase();
 
   if (!/^[0-9a-f]{32}$/.test(hash)) {
     return NextResponse.json({ error: "Invalid MD5 hash" }, { status: 400 });
