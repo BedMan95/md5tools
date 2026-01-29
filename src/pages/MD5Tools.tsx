@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useRef, type ChangeEvent } from 'react'
 import { md5 } from 'js-md5'
 import { Loader2 } from "lucide-react"
@@ -122,19 +124,20 @@ export default function MD5Tool() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="lookup-hash">MD5 Hash to crack</Label>
-                            <div className="flex gap-3">
+                            <Label htmlFor="lookup-hash" className="text-sm">MD5 Hash to crack</Label>
+                            <div className="flex gap-2">
                                 <Input
                                     id="lookup-hash"
-                                    placeholder="e.g. 5f4dcc3b5aa765d61d8327deb882cf99"
+                                    placeholder="5f4dcc3b5aa765d61d8327deb882cf99"
                                     value={lookupHash}
                                     onChange={(e) => setLookupHash(e.target.value)}
-                                    className="font-mono uppercase"
+                                    className="font-mono text-sm"
                                     maxLength={32}
                                 />
                                 <Button
                                     onClick={handleReverseLookup}
                                     disabled={lookupLoading || !lookupHash.trim()}
+                                    size="sm"
                                 >
                                     {lookupLoading ? (
                                         <>
