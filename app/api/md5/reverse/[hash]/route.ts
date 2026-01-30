@@ -14,6 +14,7 @@ export async function GET(
   const sites = [
     `https://md5decrypt.net/en/?hash=${hash}`,
     `http://www.nitrxgen.net/md5db/${hash}.txt`,
+    `https://md5.gromweb.com/?md5=${hash}`,
   ];
 
   for (const siteUrl of sites) {

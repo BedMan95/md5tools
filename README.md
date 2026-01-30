@@ -61,9 +61,7 @@ Or manually delete:
 - `src/routes.tsx` - React Router (no longer needed)
 - `src/frontend.tsx` - Old browser entry point
 - `src/index.html` - Old HTML template
-- `src/App.tsx` - Old App component
-- `src/logo.svg` - Duplicate (use public/logo.svg)
-- `src/react.svg` - Duplicate (use public/react.svg)
+- `src/App.tsx` - Old App componen
 
 ## Deployment
 

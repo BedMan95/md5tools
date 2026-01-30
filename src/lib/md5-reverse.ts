@@ -26,8 +26,7 @@ export async function md5Reverse(req: { url: string | URL; method: string; param
     const sites = [
         `https://md5decrypt.net/en/?hash=${hash}`,
         `http://www.nitrxgen.net/md5db/${hash}.txt`,
-        // Add more if you want (some may need custom parsing):
-        // `https://md5decrypt.net/en/?hash=${hash}`,
+        'https://md5.gromweb.com/?md5={hash}',
     ];
 
     for (const siteUrl of sites) {

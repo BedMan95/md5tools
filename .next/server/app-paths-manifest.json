@@ -1,5 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/md5/reverse/[hash]/route": "app/api/md5/reverse/[hash]/route.js",
   "/page": "app/page.js"
 }
