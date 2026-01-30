@@ -5,26 +5,31 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useRef, type FormEvent } from "react";
+import { Loader2 } from "lucide-react";
+import { useState, useRef, type FormEvent } from "react";
 
 export function APITester() {
   const responseInputRef = useRef<HTMLTextAreaElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const testEndpoint = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const form = e.currentTarget;
       const formData = new FormData(form);
       const endpoint = formData.get("endpoint") as string;
-      const url = new URL(endpoint, location.href);
+      const url = new URL(endpoint, window.location.origin);
       const method = formData.get("method") as string;
-      const res = await fetch(url, { method });
+      const res = await fetch(url.toString(), { method });
 
       const data = await res.json();
       responseInputRef.current!.value = JSON.stringify(data, null, 2);
     } catch (error) {
       responseInputRef.current!.value = String(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -40,15 +45,22 @@ export function APITester() {
           </SelectTrigger>
           <SelectContent align="start">
             <SelectItem value="GET">GET</SelectItem>
-            <SelectItem value="PUT">PUT</SelectItem>
+            {/* <SelectItem value="PUT">PUT</SelectItem> */}
           </SelectContent>
         </Select>
         <Label htmlFor="endpoint" className="sr-only">
           Endpoint
         </Label>
-        <Input id="endpoint" type="text" name="endpoint" defaultValue="/api/md5/reverse/900150983cd24fb0d6963f7d28e17f72" placeholder="/api/md5/reverse/(hash value)" />
-        <Button type="submit" variant="secondary">
-          Send
+        <Input id="endpoint" type="text" name="endpoint" defaultValue="/api/md5/reverse/900150983cd24fb0d6963f7d28e17f72" placeholder="/api/md5/reverse/(hash value)" disabled={isLoading} />
+        <Button type="submit" variant="secondary" disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Loading...
+            </>
+          ) : (
+            "Send"
+          )}
         </Button>
       </form>
       <Label htmlFor="response" className="sr-only">
